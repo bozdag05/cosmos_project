@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}<h1>Авторы проекта</h1>{% endblock %}
+
+{% block content %}
+<div class="col-md-12">
+            {% for item in authors %}
+            <div class="card ">
+                <div class="card-header">
+                    speciality: {{ item.speciality }}
+                </div>
+                <div class="card-body">
+                    {% if item.photo %}
+                    <img src="{{item.photo.url}}" alt="" width="150" height="250" class="float-left mr-3">
+                    {% else %}
+                    <img src="https://picsum.photos/id/1060/350/235?blur=2" alt="" class="float-left mr-3">
+                    {% endif %}
+                    <h5 class="card-title">{{ item.last_name}} {{ item.first_name}}</h5>
+                    <p class="card-text">{{item.description|safe|linebreaksbr|truncatewords:30}}</p>
+                    <a href="{% url 'author' item.pk %}" class="btn btn-primary">Читать дальше...</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock %}
+

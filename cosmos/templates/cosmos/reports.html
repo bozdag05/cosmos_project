@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}<h1>Отчёты</h1>{% endblock %}
+
+{% block content %}
+<div class="col-md-12">
+            {% for item in reports %}
+            <div class="card ">
+                <div class="card-header">
+                    Автор: <a href="{% url 'author' item.pk %}" >{{ item.author }}</a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title}}</h5>
+                    <p class="card-text">{{item.content}}</p>
+                    <a href="{% url 'report' item.pk %}" class="btn btn-primary">Читать дальше...</a>
+                </div>
+                <div class="card-footer text-muted">
+                    {{item.created_date|date:"Y-m-d H:i"}}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock %}
+
